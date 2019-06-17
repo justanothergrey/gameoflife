@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+gridX = int(input('Tamaño de X: '))
+gridY = int(gridX*0.5)
 
 class Cell:
 	#Definimos las celdas y sus sistemas de coordenadas
@@ -68,8 +70,9 @@ class LiveGame:
         self.x = np.array(self.x)
         self.y = np.array(self.y)
 
-    def start(self,gridX = 24,gridY = 12):
-        #normaliza la cuadricula
+     
+    def start(self):
+      #normaliza la cuadricula
         while True:
                 self.nextFrame()
                 plt.clf()
@@ -78,19 +81,17 @@ class LiveGame:
                 plt.draw()
 #establecimos las caracteristicas fisicas de la cuadricula
                 plt.pause(0.1) #pausa entre cuadricula y cuadricula para mostrar
-gridX = 24
-gridY = 12
 
 game = LiveGame()
-numero = float(input('fraccion: '))
-#da al usuario para determinar las celulas de la generacion inicial
+numero = float(input('Fraccion: '))
 vivos = int(numero*gridX*gridY)
 
-x = float(input('Semilla: ')) #Pide al usuario un numero para la semilla
-random.seed(x)
-for i in range(vivos):
+x = int(input('Semilla: '))
+random.seed(x)    
+for i in range(int(vivos)):
    game.cells[random.randint(0,23)][random.randint(0,23)].viva = True
 #genera las condiciones iniciales para la generacion 0
+    
 game.start()
 
 
