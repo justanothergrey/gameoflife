@@ -4,7 +4,7 @@ import random
 
 gridX = int(input('Tamaño de X: '))
 gridY = int(gridX*0.5)
-
+z = float(input('Tiempo de muestreo: '))
 class Cell:
 	#Definimos las celdas y sus sistemas de coordenadas
     def __init__(self, x, y):
@@ -80,16 +80,16 @@ class LiveGame:
                 plt.axis('off')
                 plt.draw()
 #establecimos las caracteristicas fisicas de la cuadricula
-                plt.pause(0.1) #pausa entre cuadricula y cuadricula para mostrar
+                plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
 
 game = LiveGame()
-numero = float(input('Fraccion: '))
+numero = float(input('Fraccion de celulas vivas: '))
 vivos = int(numero*gridX*gridY)
 
-x = int(input('Semilla: '))
+x = int(input('Semilla del Aleatorio: '))
 random.seed(x)    
 for i in range(int(vivos)):
-   game.cells[random.randint(0,23)][random.randint(0,23)].viva = True
+   game.cells[random.randint(0,(gridX-1))][random.randint(0,(gridX-1))].viva = True
 #genera las condiciones iniciales para la generacion 0
     
 game.start()
