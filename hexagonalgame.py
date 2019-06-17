@@ -17,25 +17,25 @@ class LiveGame:
         self.x=[]
         self.y=[]
         self.cells = []
-        for i in range(24):#parametro del tamaño de la celda
+        for i in range(gridX):#parametro del tamaño de la celda
             row = []
-            for j in range(24):
+            for j in range(gridX):
                 row.append(Cell(i,j))
             self.cells.append(row) #HAcemos las filas y columnas
 
     def willLive(self, cell): #definimos una funcion que registra a los vecinos
         vecinos =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
-        if cell.x+1<24 and self.cells[cell.x+1][cell.y].viva:
+        if cell.x+1<gridX and self.cells[cell.x+1][cell.y].viva:
             vecinos += 1
-        if cell.y+1<24 and self.cells[cell.x][cell.y+1].viva:
+        if cell.y+1<gridX and self.cells[cell.x][cell.y+1].viva:
             vecinos += 1
         if cell.y-1>=0 and self.cells[cell.x][cell.y-1].viva:
             vecinos += 1
-        if cell.y-1<24 and cell.x-1>=0 and self.cells[cell.x-1][cell.y-1].viva:
+        if cell.y-1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y-1].viva:
             vecinos += 1
         if cell.x-1>=0 and self.cells[cell.x-1][cell.y].viva:
             vecinos += 1
-        if cell.y+1<24 and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
+        if cell.y+1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
             vecinos += 1
         if vecinos==2 or (cell.viva and vecinos==1):
  #realiza el conteo de los puntos obtenidos, si esta en los limites del conteo la celula esta viva
@@ -50,17 +50,17 @@ class LiveGame:
         self.y=[]
         self.x.append(0)
         self.y.append(0)
-        self.x.append(24)
-        self.y.append(24)
+        self.x.append(gridX)
+        self.y.append(gridX)
         newcells = []
-        for i in range(24):
+        for i in range(gridX):
             row = []
-            for j in range(24):
+            for j in range(gridX):
                 row.append(Cell(i,j))
             newcells.append(row)
 #acomoda las filas y columnas con las nuevas celulas
-        for i in range(24):
-            for j in range(24):
+        for i in range(gridX):
+            for j in range(gridX):
                 estado = self.willLive(self.cells[i][j])
                 newcells[i][j].viva = estado
                 if(estado):
