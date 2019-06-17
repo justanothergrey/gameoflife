@@ -68,7 +68,7 @@ class LiveGame:
         self.x = np.array(self.x)
         self.y = np.array(self.y)
 
-    def start(self,gridX = 48,gridY = 24):
+    def start(self,gridX = 24,gridY = 12):
         #normaliza la cuadricula
         while True:
                 self.nextFrame()
@@ -78,8 +78,8 @@ class LiveGame:
                 plt.draw()
 #establecimos las caracteristicas fisicas de la cuadricula
                 plt.pause(0.1) #pausa entre cuadricula y cuadricula para mostrar
-gridX = 48
-gridY = 24
+gridX = 24
+gridY = 12
 
 game = LiveGame()
 numero = float(input('fraccion: '))
