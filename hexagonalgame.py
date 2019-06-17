@@ -86,6 +86,8 @@ numero = float(input('fraccion: '))
 #da al usuario para determinar las celulas de la generacion inicial
 vivos = int(numero*gridX*gridY)
 
+x = float(input('Semilla: ')) #Pide al usuario un numero para la semilla
+random.seed(x)
 for i in range(vivos):
    game.cells[random.randint(0,23)][random.randint(0,23)].viva = True
 #genera las condiciones iniciales para la generacion 0
