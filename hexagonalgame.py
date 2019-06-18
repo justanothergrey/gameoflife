@@ -76,7 +76,7 @@ class LiveGame:
         while True:
                 self.nextFrame()
                 plt.clf()
-                plt.hexbin(self.x, self.y, gridsize=(gridX, gridY), cmap=plt.cm.Blues_r)
+                plt.hexbin(self.x, self.y, gridsize=(gridX, gridY), cmap=plt.cm.Purples_r)
                 plt.axis('off')
                 plt.draw()
 #establecimos las caracteristicas fisicas de la cuadricula
