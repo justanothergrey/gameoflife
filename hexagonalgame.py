@@ -35,9 +35,9 @@ class LiveGame:
             vecinos += 1 #4
         if cell.y+1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
             vecinos += 1 #5
-        if cell.y+1<gridX and sel.cells[cell.x][cell.y+1]
+        if cell.y+1<gridX and self.cells[cell.x][cell.y+1]:
             vecinos += 1 #6
-        if vecinos==2 or (cell.viva and vecinos==1):
+        if vecinos==3 or (cell.viva and vecinos==2):
  #realiza el conteo de los puntos obtenidos, si esta en los limites del conteo la celula esta viva
             return True
         else:
