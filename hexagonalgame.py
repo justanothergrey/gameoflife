@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-gridX = int(input('Tamaño de X: '))
+gridX = int(input('Tamaño de X:(multiplo de 6) '))
 gridY = int(gridX*0.5)
-z = float(input('Tiempo de muestreo: '))
+z = float(input('Tiempo de muestreo:(sg) '))
 class Cell:
 	#Definimos las celdas y sus sistemas de coordenadas
     def __init__(self, x, y):
@@ -83,8 +83,9 @@ class LiveGame:
                 plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
 
 game = LiveGame()
-numero = float(input('Fraccion de celulas vivas: '))
-vivos = int(numero*gridX*gridY)
+numero = float(input('Cantidad de celulas vivas:(1-10) '))
+n = (numero*0.1)
+vivos = int(n*gridX*gridX)
 
 x = int(input('Semilla del Aleatorio: '))
 random.seed(x)    
