@@ -22,65 +22,57 @@ class LiveGame:
             for j in range(gridX):
                 row.append(Cell(i,j))
             self.cells.append(row) #HAcemos las filas y columnas
-
-    def willLive(self, cell): #definimos una funcion que registra a los vecinos
-        vecinos =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
-        if cell.x+1<gridX and self.cells[cell.x+1][cell.y].viva:
-            vecinos += 1 #1 
-        if cell.y-1>=0 and self.cells[cell.x][cell.y-1].viva:
-            vecinos += 1 #2
-        if cell.y-1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y-1].viva:
-            vecinos += 1 #3
-        if cell.x-1>=0 and self.cells[cell.x-1][cell.y].viva:
-            vecinos += 1 #4
-        if cell.y+1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
-            vecinos += 1 #5
-        if cell.y+1<gridX and self.cells[cell.x][cell.y+1]:
-            vecinos += 1 #6
-        if vecinos==3 or (cell.viva and vecinos==2):
- #realiza el conteo de los puntos obtenidos, si esta en los limites del conteo la celula esta viva
-            return True
-        else:
-#si el conteo esta fuera de los limites, la celula esta muerta
-            return False
-
+   
     def nextFrame(self):
-#realiza la siguiente cuadricula para mostrar las condiciones obtenidas despues de ser aplicada la funcion
-        self.x=[]
-        self.y=[]
-        self.x.append(0)
-        self.y.append(0)
-        self.x.append(gridX)
-        self.y.append(gridX)
-        newcells = []
-        for i in range(gridX):
-            row = []
-            for j in range(gridX):
-                row.append(Cell(i,j))
-            newcells.append(row)
-#acomoda las filas y columnas con las nuevas celulas
-        for i in range(gridX):
-            for j in range(gridX):
-                estado = self.willLive(self.cells[i][j])
-                newcells[i][j].viva = estado
-                if(estado):
-                    self.x.append(i)
-                    self.y.append(j)
-        self.cells = newcells
-        self.x = np.array(self.x)
-        self.y = np.array(self.y)
+     self.x=[]
+     self.y=[]
+     self.x.append(0)
+     self.y.append(0)
+     self.x.append(gridX)
+     self.y.append(gridX)
+     newcells = []
+     for i in range(gridX):
+      row = []
+      for j in range(gridX):
+       row.append(Cell(i,j))
+      newcells.append(row)
 
-     
+    def willLive (self,cell,i,j):
+      vecinos == 0;
+      for x in [i-1,i,i+1]:
+       for y in [j-1,j,j+1]:
+        if ( x == i and y == j):
+         continue
+        if (x != i and y !=j):
+         vecinos += self.cells[x][y]
+        elif (x == self.x and y != self.y):
+         vecinos += self.cells[0][y]
+        elif (x != self.x and y == self.y):
+         vecinos += self.cells[x][0]
+        else:
+         vecinos += self.cells[0][0]
+      return vecinos
+    
     def start(self):
-      #normaliza la cuadricula
-        while True:
-                self.nextFrame()
-                plt.clf()
-                plt.hexbin(self.x, self.y, gridsize=(gridX, gridY), cmap=plt.cm.Purples_r)
-                plt.axis('off')
-                plt.draw()
-#establecimos las caracteristicas fisicas de la cuadricula
-                plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
+     for i in range (gridX):
+      for j in range (gridX):
+         live = self.willLive(i,j)
+         if (self.cells[i][j] == True and live<2):
+          self.newcells[i][j] = False
+         elif (self.cells[i][j] == True and live == 2):
+          self.newcells[i][j] == True
+         elif (self.cells[i][j] == True and live > 3):
+          self.newcells[i][j] == False
+         elif(self.cells[i][j] == False and live == 3):
+          self.newcells[i][j] == True
+
+     while True:
+      self.nextFrame()
+      plt.clf()
+      plt.hexbin(self.x, self.y, gridsize=(gridX, gridY), cmap=plt.cm.Purples_r)
+      plt.axis('off')
+      plt.draw()
+      plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
 
 game = LiveGame()
 numero = float(input('Cantidad de celulas vivas:(1-10) '))
