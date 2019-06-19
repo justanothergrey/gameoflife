@@ -30,6 +30,7 @@ class LiveGame:
      self.x.append(0)
      self.y.append(0)
      self.x.append(gridX)
+
      self.y.append(gridX)
      newcells = []
      for i in range(gridX):
@@ -41,18 +42,18 @@ class LiveGame:
     def willLive (self,i,j):
       global neighbours
       neighbours = 0;
-      for x in [i-1,i,i+1]:
-       for y in [j-1,j,j+1]:
-        if ( x == i and y == j):
+      for cell.x in [i-1,i,i+1]:
+       for cell.y in [j-1,j,j+1]:
+        if ( cell.x == i and cell.y == j):
          continue
-        if (x != i and y !=j):
-         neighbours += self.cells[x][y]
-        elif (x == self.x and y != self.y):
-         neighbours += self.cells[0][y]
+        if (cell.x != i and cell.y !=j):
+         neighbours += oldframe[x][y]
+        elif (cell.x == self.x and cell.y != self.y):
+         neighbours += oldframe[0][y]
         elif (x != self.x and y == self.y):
-         neighbours += self.cells[x][0]
+         neighbours += oldframe[x][0]
         else:
-         neighbours += self.cells[0][0]
+         neighbours += oldframe[0][0]
       return neighbours
     
     def start(self):
@@ -60,13 +61,13 @@ class LiveGame:
       for j in range (gridX):
          live = LiveGame()
          live.willLive(i,j)
-         if (self.cells[i][j] == True and live<2):
+         if (self.viva[i][j] == True and live<2):
           self.newcells[i][j] = False
-         elif (self.cells[i][j] == True and live == 2):
+         elif (self.viva[i][j] == True and live == 2):
           self.newcells[i][j] == True
-         elif (self.cells[i][j] == True and live > 3):
+         elif (self.viva[i][j] == True and live > 3):
           self.newcells[i][j] == False
-         elif(self.cells[i][j] == False and live == 3):
+         elif(self.viva[i][j] == False and live == 3):
           self.newcells[i][j] == True
 
      while True:
