@@ -5,6 +5,7 @@ import random
 gridX = int(input('Tamaño de X:(multiplo de 6) '))
 gridY = int(gridX*0.5)
 z = float(input('Tiempo de muestreo:(sg) '))
+
 class Cell:
 	#Definimos las celdas y sus sistemas de coordenadas
     def __init__(self, x, y):
@@ -37,26 +38,28 @@ class LiveGame:
        row.append(Cell(i,j))
       newcells.append(row)
 
-    def willLive (self,cell,i,j):
-      vecinos == 0;
+    def willLive (self,i,j):
+      global neighbours
+      neighbours = 0;
       for x in [i-1,i,i+1]:
        for y in [j-1,j,j+1]:
         if ( x == i and y == j):
          continue
         if (x != i and y !=j):
-         vecinos += self.cells[x][y]
+         neighbours += self.cells[x][y]
         elif (x == self.x and y != self.y):
-         vecinos += self.cells[0][y]
+         neighbours += self.cells[0][y]
         elif (x != self.x and y == self.y):
-         vecinos += self.cells[x][0]
+         neighbours += self.cells[x][0]
         else:
-         vecinos += self.cells[0][0]
-      return vecinos
+         neighbours += self.cells[0][0]
+      return neighbours
     
     def start(self):
      for i in range (gridX):
       for j in range (gridX):
-         live = self.willLive(i,j)
+         live = LiveGame()
+         live.willLive(i,j)
          if (self.cells[i][j] == True and live<2):
           self.newcells[i][j] = False
          elif (self.cells[i][j] == True and live == 2):
@@ -77,11 +80,11 @@ class LiveGame:
 game = LiveGame()
 numero = float(input('Cantidad de celulas vivas:(1-10) '))
 n = (numero*0.1)
-vivos = int(n*gridX*gridX)
+alive = int(n*gridX*gridX)
 
 x = int(input('Semilla del Aleatorio: '))
 random.seed(x)    
-for i in range(int(vivos)):
+for i in range(int(alive)):
    game.cells[random.randint(0,(gridX-1))][random.randint(0,(gridX-1))].viva = True
 #genera las condiciones iniciales para la generacion 0
     
