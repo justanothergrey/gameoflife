@@ -23,7 +23,6 @@ class LiveGame:
             for j in range(gridX):
                 row.append(Cell(i,j))
             self.cells.append(row) #HAcemos las filas y columnas
-<<<<<<< HEAD
 
     def willLive(self, cell): #definimos una funcion que registra a los vecinos
         v =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
@@ -60,7 +59,6 @@ class LiveGame:
             for j in range(gridX):
                 row.append(Cell(i,j))
             newcells.append(row)
-#acomoda las filas y columnas con las nuevas celulas
         for i in range(gridX):
             for j in range(gridX):
                 estado = self.willLive(self.cells[i][j])
@@ -71,56 +69,8 @@ class LiveGame:
         self.cells = newcells
         self.x = np.array(self.x)
         self.y = np.array(self.y)
-     
-=======
-   
-    def nextFrame(self):
-     self.x=[]
-     self.y=[]
-     self.x.append(0)
-     self.y.append(0)
-     self.x.append(gridX)
-
-     self.y.append(gridX)
-     newcells = []
-     for i in range(gridX):
-      row = []
-      for j in range(gridX):
-       row.append(Cell(i,j))
-      newcells.append(row)
-
-    def willLive (self,i,j):
-      global neighbours
-      neighbours = 0;
-      for cell.x in [i-1,i,i+1]:
-       for cell.y in [j-1,j,j+1]:
-        if ( cell.x == i and cell.y == j):
-         continue
-        if (cell.x != i and cell.y !=j):
-         neighbours += oldframe[x][y]
-        elif (cell.x == self.x and cell.y != self.y):
-         neighbours += oldframe[0][y]
-        elif (x != self.x and y == self.y):
-         neighbours += oldframe[x][0]
-        else:
-         neighbours += oldframe[0][0]
-      return neighbours
     
->>>>>>> b55427b253356d00733d1bdf7c5fa0f788310813
     def start(self):
-     for i in range (gridX):
-      for j in range (gridX):
-         live = LiveGame()
-         live.willLive(i,j)
-         if (self.viva[i][j] == True and live<2):
-          self.newcells[i][j] = False
-         elif (self.viva[i][j] == True and live == 2):
-          self.newcells[i][j] == True
-         elif (self.viva[i][j] == True and live > 3):
-          self.newcells[i][j] == False
-         elif(self.viva[i][j] == False and live == 3):
-          self.newcells[i][j] == True
-
      while True:
       self.nextFrame()
       plt.clf()
