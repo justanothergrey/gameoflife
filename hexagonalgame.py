@@ -24,20 +24,20 @@ class LiveGame:
             self.cells.append(row) #HAcemos las filas y columnas
 
     def willLive(self, cell): #definimos una funcion que registra a los vecinos
-        vecinos =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
+        v =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
         if cell.x+1<gridX and self.cells[cell.x+1][cell.y].viva:
-            vecinos += 1 #1 
-        if cell.y-1>=0 and self.cells[cell.x][cell.y-1].viva:
-            vecinos += 1 #2
+            v += 1 #1 
+        if cell.y-1 and self.cells[cell.x][cell.y-1].viva:
+            v += 1 #2
         if cell.y-1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y-1].viva:
-            vecinos += 1 #3
-        if cell.x-1>=0 and self.cells[cell.x-1][cell.y].viva:
-            vecinos += 1 #4
+            v += 1 #3
+        if cell.x-1 and self.cells[cell.x-1][cell.y].viva:
+            v += 1 #4
         if cell.y+1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
-            vecinos += 1 #5
+            v += 1 #5
         if cell.y+1<gridX and self.cells[cell.x][cell.y+1]:
-            vecinos += 1 #6
-        if vecinos==3 or (cell.viva and vecinos==2):
+            v += 1 #6
+        if v==3 or (cell.viva and v==2):
  #realiza el conteo de los puntos obtenidos, si esta en los limites del conteo la celula esta viva
             return True
         else:
@@ -69,7 +69,6 @@ class LiveGame:
         self.cells = newcells
         self.x = np.array(self.x)
         self.y = np.array(self.y)
-
      
     def start(self):
       #normaliza la cuadricula
