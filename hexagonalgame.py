@@ -74,7 +74,7 @@ class LiveGame:
      while True:
       self.nextFrame()
       plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=(gridX, gridY), cmap=plt.cm.Purples_r)
+      plt.hexbin(self.x, self.y, gridsize=((gridX-1),(gridY-1)), cmap=plt.cm.Purples_r)
       plt.axis('off')
       plt.draw()
       plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
