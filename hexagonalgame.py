@@ -74,21 +74,33 @@ class LiveGame:
      while True:
       self.nextFrame()
       plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=((gridX-1),(gridY-1)), cmap=plt.cm.Purples_r)
+      plt.hexbin(self.x, self.y, gridsize=((gridX-1),(gridY-1)), cmap=plt.cm.Blues_r)
       plt.axis('off')
       plt.draw()
       plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
 
 game = LiveGame()
-numero = float(input('Cantidad de celulas vivas:(1-10) '))
-n = (numero*0.1)
+answer1 = input('Quieres elegir la Cantidad de celulas vivas?: ')
+if answer1 == 'no':
+ n = random.random()
+elif answer1 == 'si':
+ n = float(input('Cantidad de celulas vivas:(0-1) '))
+else:
+ print('Elige si o no')
+
 alive = int(n*gridX*gridX)
 
-x = int(input('Semilla del Aleatorio: '))
-random.seed(x)    
-for i in range(int(alive)):
-   game.cells[random.randint(0,(gridX-1))][random.randint(0,(gridX-1))].viva = True
-#genera las condiciones iniciales para la generacion 0
+answer2 = input('Quieres elegir la Semilla del Aleatorio?: ')
+if answer2 == 'si':
+ x = int(input('Semilla del Aleatorio: '))
+ np.random.seed(x)
+elif answer2 == 'no':
+ pass
+else:
+ print('Elige si o no')
+    
+for i in range(alive):
+   game.cells[np.random.randint(0,(gridX-1))][np.random.randint(0,(gridX-1))].viva = True
     
 game.start()
 
