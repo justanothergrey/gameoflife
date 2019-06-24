@@ -23,7 +23,7 @@ class LiveGame:
             for j in range(gridX):
                 row.append(Cell(i,j))
             self.cells.append(row) #HAcemos las filas y columnas
-
+    
     def willLive(self, cell): #definimos una funcion que registra a los vecinos
         v =  0;#usamos un sistema de puntaje que acumula el numero de condiciones punto por punto
         if cell.x+1<gridX and self.cells[cell.x+1][cell.y].viva:
@@ -52,7 +52,7 @@ class LiveGame:
         self.x.append(0)
         self.y.append(0)
         self.x.append(gridX)
-        self.y.append(gridX)
+        self.y.append(gridY)
         newcells = []
         for i in range(gridX):
             row = []
@@ -71,13 +71,13 @@ class LiveGame:
         self.y = np.array(self.y)
     
     def start(self):
-     while True:
+     while True: 
       self.nextFrame()
       plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=((gridX-1),(gridY-1)), cmap=plt.cm.Blues_r)
+      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.Blues_r)
       plt.axis('off')
       plt.draw()
-      plt.pause(z) #pausa entre cuadricula y cuadricula para mostrar
+      plt.pause(z)
 
 game = LiveGame()
 answer1 = input('Quieres elegir la Cantidad de celulas vivas?: ')
