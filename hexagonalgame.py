@@ -48,7 +48,7 @@ class LiveGame:
         self.y=[]
         self.x.append(0)
         self.y.append(0)
-        self.x.append(gridX)
+        self.x.append(gridX-1)
         self.y.append(gridX)
         newcells = []
         for i in range(gridX):
