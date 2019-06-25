@@ -7,7 +7,6 @@ gridY = int(gridX*0.5)
 z = float(input("Tiempo de muestreo:(sg) "))
 
 class Cell:
-	#Definimos las celdas y sus sistemas de coordenadas
     def __init__(self, x, y):
         self.viva = False
         self.x = x;
@@ -71,7 +70,7 @@ class LiveGame:
      while True: 
       self.nextFrame()
       plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.Blues_r)
+      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.binary_r)
       plt.axis("off")
       plt.draw()
       plt.pause(z)
@@ -79,7 +78,8 @@ class LiveGame:
 game = LiveGame()
 answer1 = input("Quieres elegir la Cantidad de celulas vivas?: ")
 if answer1 == "no":
- n = random.random()
+ n1 = random.random()
+ n = round(n1,1)
  print ("La proporcion elegida fue: ", n)
 elif answer1 == "si":
  n = float(input("Cantidad de celulas vivas:(0-1) "))
