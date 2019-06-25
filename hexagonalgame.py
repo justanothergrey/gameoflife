@@ -80,6 +80,7 @@ game = LiveGame()
 answer1 = input("Quieres elegir la Cantidad de celulas vivas?: ")
 if answer1 == "no":
  n = random.random()
+ print ("La proporcion elegida fue: ", n)
 elif answer1 == "si":
  n = float(input("Cantidad de celulas vivas:(0-1) "))
 else:
