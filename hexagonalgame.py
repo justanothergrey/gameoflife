@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+import time
 
 gridX = int(input("Tamano de X:(multiplo de 6) "))
 gridY = int(gridX*0.5)
@@ -87,6 +88,7 @@ else:
  print("Elige si o no")
 
 alive = int(n*gridX*gridX)
+print ("alive: ", alive)
 
 answer2 = input("Quieres elegir la Semilla del Aleatorio?: ")
 if answer2 == "si":
