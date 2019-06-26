@@ -68,7 +68,8 @@ class LiveGame:
         self.y = np.array(self.y)
     
     def start(self):
-     while True: 
+     while True:
+      print(self.x,self.y) #provisional 
       self.nextFrame()
       plt.clf()
       plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.binary_r)
