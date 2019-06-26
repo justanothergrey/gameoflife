@@ -24,21 +24,34 @@ class LiveGame:
                 row.append(Cell(i,j))
             self.cells.append(row) 
     
-    def willLive(self, cell): 
+    def willLive(self, cell):
         v =  0;
         if cell.x+1<gridX and self.cells[cell.x+1][cell.y].viva:
-            v += 1 #1 
-        if cell.y-1 and self.cells[cell.x][cell.y-1].viva:
+            v += 1 #1
+        elif cell.x>gridX and self.cells[gridX-1][cell.y].viva:
+            v += 1 
+        if cell.y-1>=0 and self.cells[cell.x][cell.y-1].viva:
             v += 1 #2
+        elif cell.y-1<0 and self.cells[cell.x][0].viva:
+            v += 1
         if cell.y-1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y-1].viva:
             v += 1 #3
-        if cell.x-1 and self.cells[cell.x-1][cell.y].viva:
+        elif self.cells[gridX-1][0].viva:
+            v +=1
+        if self.cells[cell.x-1][cell.y].viva:
             v += 1 #4
-        if cell.y+1<gridX and cell.x-1>=0 and self.cells[cell.x-1][cell.y+1].viva:
-            v += 1 #5
+        elif self.cells[0][cell.y].viva:
+            v += 1
+        if cell.x-1>0 and cell.y+1<gridX and self.cells[cell.x-1][cell.y+1].viva:   
+            v += 1 #5 
+        elif self.cells [gridX-1][gridX-1].viva:
+            v += 1
         if cell.y+1<gridX and self.cells[cell.x][cell.y+1]:
             v += 1 #6
+        elif self.cells[cell.x][0].viva:
+            v += 1
         if v==3 or (cell.viva and v==2):
+
             return True
         else:
             return False
