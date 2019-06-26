@@ -69,7 +69,7 @@ class LiveGame:
     
     def start(self):
      while True:
-      print(self.x,self.y) #provisional 
+     # print(self.x,self.y) 
       self.nextFrame()
       plt.clf()
       plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.pink)
@@ -102,7 +102,7 @@ else:
 for i in range(0,alive):
   a = np.random.randint(0,(gridX-1))
   b = np.random.randint(0,(gridX-1))
-  print ("Coordenadas iniciales: ",a,b) #provisional     
+  #print ("Coordenadas iniciales: ",a,b)     
   game.cells[a][b].viva = True
 game.start()
 
