@@ -72,7 +72,7 @@ class LiveGame:
       print(self.x,self.y) #provisional 
       self.nextFrame()
       plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.binary_r)
+      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.pink)
       plt.axis("off")
       plt.draw()
       plt.pause(z)
@@ -99,10 +99,11 @@ elif answer2 == "no":
  pass
 else:
  print("Elige si o no")
-    
-for i in range(alive):
-   game.cells[np.random.randint(0,(gridX-1))][np.random.randint(0,(gridX-1))].viva = True
-    
+for i in range(0,alive):
+  a = np.random.randint(0,(gridX-1))
+  b = np.random.randint(0,(gridX-1))
+  print ("Coordenadas iniciales: ",a,b) #provisional     
+  game.cells[a][b].viva = True
 game.start()
 
 
