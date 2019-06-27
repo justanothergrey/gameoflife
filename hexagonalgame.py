@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import random
 import time
 
-gridX = int(input("Tamano de X:(multiplo de 6) "))
+gridX = 30
 gridY = int(gridX*0.5)
-z = float(input("Tiempo de muestreo:(sg) "))
+z = 0.01
+p = int(input("Prueba #"))
 
 class Cell:
     def __init__(self, x, y):
@@ -50,7 +51,7 @@ class LiveGame:
             v += 1 #6
         elif self.cells[cell.x][0].viva:
             v += 1
-        if v==3 or (cell.viva and v==2):
+        if v==4 or (cell.viva and v==3):
 
             return True
         else:
@@ -81,14 +82,20 @@ class LiveGame:
         self.y = np.array(self.y)
     
     def start(self):
+     t = 0
      while True:
-     # print(self.x,self.y) 
-      self.nextFrame()
-      plt.clf()
-      plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.pink)
-      plt.axis("off")
-      plt.draw()
-      plt.pause(z)
+      while t<10000:
+       self.nextFrame()
+       plt.clf()
+       plt.hexbin(self.x, self.y, gridsize=(gridX,gridY), cmap=plt.cm.pink)
+       plt.axis("off")
+       plt.draw()
+       plt.pause(z)
+       t += 1
+       print ("Generación #",t)
+       if t == 10000:
+        plt.savefig("Prueba %d" % p)
+        break
 
 game = LiveGame()
 answer1 = input("Quieres elegir la Cantidad de celulas vivas?: ")
@@ -107,11 +114,14 @@ print ("alive: ", alive)
 answer2 = input("Quieres elegir la Semilla del Aleatorio?: ")
 if answer2 == "si":
  x = int(input("Semilla del Aleatorio: "))
- np.random.seed(x)
 elif answer2 == "no":
- pass
+ x = np.random.randint(1,10)
+ print("Semilla elegida: ",x)
 else:
  print("Elige si o no")
+
+np.random.seed(x)
+ 
 for i in range(0,alive):
   a = np.random.randint(0,(gridX-1))
   b = np.random.randint(0,(gridX-1))
